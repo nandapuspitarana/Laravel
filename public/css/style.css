@@ -1,0 +1,21 @@
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
+.btn::before {
+    width: calc(100% + 60px);
+    transform: skewX(-45deg) translateX(calc(-100% - 30px));
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% + 40px);
+    height: 100%;
+    background-color: #eee;
+    transform: skewX(-45deg) translateX(calc(-100% - 20px));
+    transition: transform .2s;
+    z-index: -1;
+}

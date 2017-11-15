@@ -4,8 +4,11 @@
 
 @section('content')
      
-    <h1>Data Siswa</h1>
-    <table class="table table-responsive">
+    <h1 class="mr-auto">Data Siswa</h1>
+    <div class="form-inline my-2 my-lg-0">
+      <a class="btn btn-outline-success my-2 my-sm-0" href="{{route('student.create')}}">Tambah Data</a>
+    </div>
+    <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
             <th scope="col">#</th>
@@ -13,6 +16,7 @@
             <th scope="col">Alamat</th>
             <th scope="col">Umur</th>
             <th scope="col">Email</th>
+            <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +27,14 @@
                     <td>{{ $student->address }}</td>
                     <td>{{ $student->age }}</td>
                     <td>{{ $student->email }}</td>
+                    <td>
+                        <form method="POST" action="{{ route('student.destroy', $student->id) }}">
+                            <input type="hidden" name="_method" value="delete" />
+                            {{ csrf_field() }}
+                            <button type="submit" onclick="return confirm('hapus {{ $student->name }} ?')" class="btn btn-danger">hapus</button>                            
+                        </form>
+                        <a class="btn btn-primary" href="{{ route('student.edit', $student->id) }}">Update</a>
+                    </td>
                 </tr>
              @endforeach
         </tbody>
