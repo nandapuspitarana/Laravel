@@ -12,15 +12,16 @@ class StudentTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
-
+        $faker = Faker::create('id_ID');
+        
         foreach(range(1, 50) as $index) {
-            DB::table('students')->insert([
+            DB::table('students')->insert([       /* DB database class */
                 'name' => $faker->name,
                 'address' => $faker->address,
                 'age' => rand(20, 50),
                 'email' => $faker->freeEmail
             ]);
         }
+
     }
 }

@@ -21,21 +21,35 @@ class StudentRequest extends FormRequest
      *
      * @return array
      */
-    
     public function rules()
     {
-        return [
-            'name' => 'required',
-            'address' => 'required',
-            'age' => 'required|numeric',
-            'email' => 'required|email|unique:students'
-        ];
+        switch($this->method()) 
+        {
+            case "POST";
+            return [
+                'name' => 'required',
+                'address' => 'required',
+                'email' =>'required|email|unique:students',
+                'age' => 'required|numeric'
+            ];
+                break;
+            case "PUT";
+            return [
+                'name' => 'required',
+                'address' => 'required',
+                'email' =>'required|email',
+                'age' => 'required|numeric'
+            ];
+        }
     }
 
     public function messages()
     {
-        return [
-            'name.required' => 'Nama harus diisi'
+        return[
+            'name.required' => 'Nama Harus diisi!',
+            'address.required' => 'Alamat Harus diisi!',
+            'age.required' => 'Umur Harus Diisi!',
+            'email.required' => 'Email harus diisi' 
         ];
     }
 }

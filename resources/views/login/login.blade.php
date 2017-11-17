@@ -7,20 +7,19 @@
     <title>Document</title>
 </head>
 <body>
+    
     <h1>{{ $nama }}</h1>
     <h1>{{ $sekolah }}</h1>
     <ul>
-        @foreach($dataArray as $data)
-            @if($data == 'KAMU')
-                <li>Dika Budiaji</li>
-            @else
-                <li>{{ $data }}</li>    
-            @endif
-            
+    @foreach($dataArray as $data)
+        @if($data == "kemseng")
+        <li>CIplexa</li>
+        @else
+            <li>{{ $data }}</li>
+        @endif
+
         @endforeach
     </ul>
-
     @include('login.form')
-    
 </body>
 </html>

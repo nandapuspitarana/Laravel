@@ -4,48 +4,55 @@
 
 @section('content')
 
-<form class="container" method="POST" action="{{ route('student.update', $student->id) }}">
+
+<form class="container" method="POST" enctype="multipart/form-data" action="{{ route('student.update', $student->id) }}">
   <input type="hidden" name="_method" value="put" />
-  {{ csrf_field() }}
+    {{ csrf_field() }}
   <div class="form-group">
-    <label>Nama</label>
-    <input type="text" name="name" value="{{ $student->name }}" class="form-control" placeholder="Masukkan Nama">
-    @if($errors->first('name'))
-		<p class="text-danger">{{ $errors->first('name') }}</p>
-    @endif
+    <label for="input">Nama</label>
+    <input type="text" class="form-control"  name="name" placeholder="Enter Name" value="{{ $student->name }}" >
+        @if($errors->first('name'))
+          <p style="color: red">{{ $errors->first('name') }}</p>
+        @endif
   </div>
   <div class="form-group">
-    <label>Alamat</label>
-    <input type="text" name="address" value="{{ $student->address }}" class="form-control" placeholder="Masukkan Alamat">
+    <label for="input">Alamat</label>
+    <input type="text" class="form-control" name="address" placeholder="Enter Address" value="{{ $student->address }}">
     @if($errors->first('address'))
-		<p class="text-danger">{{ $errors->first('address') }}</p>
-    @endif
+          <p style="color: red">{{ $errors->first('address') }}</p>
+        @endif
   </div>
   <div class="form-group">
-    <label>Umur</label>
-    <input type="number" name="age" value="{{ $student->age }}" class="form-control" placeholder="Masukkan Umur" min="1" max="200">
-    @if($errors->first('age'))
-		<p class="text-danger">{{ $errors->first('age') }}</p>
-    @endif
+    <label for="input">Umur</label>
+    <input type="text" class="form-control"  name="age" placeholder="Enter Age" value="{{ $student->age }}">
+  </div>
+  @if($errors->first('age'))
+          <p style="color: red">{{ $errors->first('age') }}</p>
+        @endif
+  <div class="form-group">
+    <label for="input">Email</label>
+    <input type="text" class="form-control" name="email" placeholder="Enter Email" value="{{ $student->email }}">
   </div>
   <div class="form-group">
-    <label>Email</label>
-    <input type="text" name="email" value="{{ $student->email }}" class="form-control" placeholder="Masukkan Email">
-    @if($errors->first('email'))
-		<p class="text-danger">{{ $errors->first('email') }}</p>
-    @endif
+    <label for="input">photo (kosongkan jika tidak ingin diganti)</label>
+    <input type="file" class="form-control" name="photo" >
   </div>
+  @if($errors->first('email'))
+          <p style="color: red">{{ $errors->first('email') }}</p>
+        @endif
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+</br>
+    @if($errors->any())
+      <div class="alert alert-danger mt-3 ml-3">
+    <ul>
+      @foreach($errors->all() as $error)
+    <li>{{ $error }}</li>
+      @endforeach
+</ul>
 
-@if($errors->any())
-	<div class="mt-4 container alert alert-danger">
-		<ul>
-			@foreach($errors->all() as $error)
-				<li>{{ $error }}</li>
-			@endforeach
-		</ul>
-	</div>
+</div>
+
 @endif
 
 @stop

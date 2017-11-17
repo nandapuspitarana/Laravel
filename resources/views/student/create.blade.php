@@ -1,50 +1,51 @@
 @extends('layouts.default')
-
 @section('title', 'Tambah Siswa')
-
 @section('content')
-
-<form class="container" method="POST" action="{{ route('student.store') }}">
+<form class="container" enctype="multipart/form-data" method="POST" action="{{ route('student.store') }}">
   {{ csrf_field() }}
   <div class="form-group">
-    <label>Nama</label>
-    <input type="text" name="name" class="form-control" placeholder="Masukkan Nama">
+    <label for="input">Nama</label>
+    <input type="text" class="form-control"  name="name" placeholder="Enter Name">
     @if($errors->first('name'))
-		<p class="text-danger">{{ $errors->first('name') }}</p>
+    <p style="color: red">{{ $errors->first('name') }}</p>
     @endif
   </div>
   <div class="form-group">
-    <label>Alamat</label>
-    <input type="text" name="address" class="form-control" placeholder="Masukkan Alamat">
+    <label for="input">Alamat</label>
+    <input type="text" name="address" class="form-control" placeholder="Enter Address">
     @if($errors->first('address'))
-		<p class="text-danger">{{ $errors->first('address') }}</p>
+    <p style="color: red">{{ $errors->first('address') }}</p>
     @endif
   </div>
   <div class="form-group">
-    <label>Umur</label>
-    <input type="number" name="age" class="form-control" placeholder="Masukkan Umur" min="1" max="200">
-    @if($errors->first('age'))
-		<p class="text-danger">{{ $errors->first('age') }}</p>
-    @endif
+    <label for="input">Umur</label>
+    <input type="text" class="form-control"  name="age" placeholder="Enter Age">
   </div>
+  @if($errors->first('age'))
+  <p style="color: red">{{ $errors->first('age') }}</p>
+  @endif
   <div class="form-group">
-    <label>Email</label>
-    <input type="text" name="email" class="form-control" placeholder="Masukkan Email">
-    @if($errors->first('email'))
-		<p class="text-danger">{{ $errors->first('email') }}</p>
-    @endif
+    <label for="input">Email</label>
+    <input type="text" class="form-control" name="email" placeholder="Enter Email">
+  </div>
+  @if($errors->first('email'))
+  <p style="color: red">{{ $errors->first('email') }}</p>
+  @endif
+  <div class="form-group">
+    <label >Photo</label>
+    <input type="file" class="form-control" name="photo" placeholder="Enter Email">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
 @if($errors->any())
-	<div class="mt-4 container alert alert-danger">
-		<ul>
-			@foreach($errors->all() as $error)
-				<li>{{ $error }}</li>
-			@endforeach
-		</ul>
-	</div>
+<div class="alert alert-danger mt-3 ml-3">
+  <ul>
+    @foreach($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+  </ul>
+</div>
 @endif
 
 @stop
